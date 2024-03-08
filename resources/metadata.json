@@ -1,0 +1,223 @@
+{
+ "databases": {
+  "Liceu": {
+   "tables": {}
+  },
+  "a": {
+   "tables": {}
+  },
+  "Gradina": {
+   "tables": {
+    "Teren": {
+     "fileName": "teren.bin",
+     "rowLength": "5",
+     "Structure": [
+      {
+       "Attribute": {
+        "name": "id",
+        "type": "int",
+        "length": 20,
+        "isnull": false
+       }
+      },
+      {
+       "Attribute": {
+        "name": "nume",
+        "type": "nvarchar",
+        "length": 20,
+        "isnull": false
+       }
+      },
+      {
+       "Attribute": {
+        "name": "hectare",
+        "type": "int",
+        "length": 10,
+        "isnull": false
+       }
+      },
+      {
+       "Attribute": {
+        "name": "tip",
+        "type": "nvarchar",
+        "length": 20,
+        "isnull": true
+       }
+      },
+      {
+       "Attribute": {
+        "name": "data",
+        "type": "int",
+        "length": 10,
+        "isnull": false
+       }
+      }
+     ],
+     "IndexFiles": [
+      {
+       "indexName": "index_teren",
+       "keyLength": 2,
+       "isUnique": true,
+       "indexType": "BTree",
+       "IndexAttributes": [
+        "nume",
+        "hectare"
+       ]
+      }
+     ],
+     "uniqueKeys": [
+      "id"
+     ],
+     "primaryKey": "id",
+     "foreignKeys": []
+    },
+    "Porumb": {
+     "fileName": "porumb.bin",
+     "rowLength": "5",
+     "Structure": [
+      {
+       "Attribute": {
+        "name": "id",
+        "type": "int",
+        "length": 20,
+        "isnull": false
+       }
+      },
+      {
+       "Attribute": {
+        "name": "id_teren",
+        "type": "int",
+        "length": 20,
+        "isnull": true
+       }
+      },
+      {
+       "Attribute": {
+        "name": "cantitate",
+        "type": "int",
+        "length": 1,
+        "isnull": false
+       }
+      },
+      {
+       "Attribute": {
+        "name": "denumire",
+        "type": "nvarchar",
+        "length": 30,
+        "isnull": false
+       }
+      },
+      {
+       "Attribute": {
+        "name": "data",
+        "type": "int",
+        "length": 20,
+        "isnull": false
+       }
+      }
+     ],
+     "IndexFiles": [
+      {
+       "indexName": "index_porumb1",
+       "keyLength": 2,
+       "isUnique": true,
+       "indexType": "BTree",
+       "IndexAttributes": [
+        "id_teren",
+        "denumire"
+       ]
+      },
+      {
+       "indexName": "index_porumb2",
+       "keyLength": 2,
+       "isUnique": false,
+       "indexType": "BTree",
+       "IndexAttributes": [
+        "id_teren",
+        "data"
+       ]
+      }
+     ],
+     "uniqueKeys": [
+      "denumire"
+     ],
+     "primaryKey": "id",
+     "foreignKeys": [
+      {
+       "attributeName": "id_teren",
+       "references_table": "Teren",
+       "references_column": "id"
+      }
+     ]
+    },
+    "Depozit": {
+     "fileName": "depozit.bin",
+     "rowLength": "4",
+     "Structure": [
+      {
+       "Attribute": {
+        "name": "id",
+        "type": "int",
+        "length": 20,
+        "isnull": false
+       }
+      },
+      {
+       "Attribute": {
+        "name": "id_teren",
+        "type": "int",
+        "length": 20,
+        "isnull": true
+       }
+      },
+      {
+       "Attribute": {
+        "name": "id_porumb",
+        "type": "int",
+        "length": 20,
+        "isnull": true
+       }
+      },
+      {
+       "Attribute": {
+        "name": "nume",
+        "type": "nvarchar",
+        "length": 30,
+        "isnull": false
+       }
+      }
+     ],
+     "IndexFiles": [
+      {
+       "indexName": "index_depozit",
+       "keyLength": 2,
+       "isUnique": false,
+       "indexType": "BTree",
+       "IndexAttributes": [
+        "id_teren",
+        "id_porumb"
+       ]
+      }
+     ],
+     "uniqueKeys": [
+      "id",
+      "nume"
+     ],
+     "primaryKey": "id",
+     "foreignKeys": [
+      {
+       "attributeName": "id_teren",
+       "references_table": "Teren",
+       "references_column": "id"
+      },
+      {
+       "attributeName": "id_porumb",
+       "references_table": "Porumb",
+       "references_column": "id"
+      }
+     ]
+    }
+   }
+  }
+ }
+}
